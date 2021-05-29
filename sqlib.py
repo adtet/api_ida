@@ -48,8 +48,11 @@ def get_suhu_kelembapan():
         for prop, val in zip(cols, row):
             data[prop] = val
         datas.append(data)
-    data = datas[-1]
-    data['tanggal'] = str(data['tanggal'])
+    if len(datas) == 0:
+        data = []
+    else:
+        data = datas[-1]
+        data['tanggal'] = str(data['tanggal'])
     dataJson = json.dumps(data)
     return dataJson
 
@@ -66,6 +69,11 @@ def get_cahaya():
         for prop, val in zip(cols, row):
             data[prop] = val
         datas.append(data)
+    if len(datas) == 0:
+        data = []
+    else:
+        data = datas[-1]
+        data['tanggal'] = str(data['tanggal'])
     data = datas[-1]
     data['tanggal'] = str(data['tanggal'])
     dataJson = json.dumps(data)
@@ -84,7 +92,10 @@ def get_hujan():
         for prop, val in zip(cols, row):
             data[prop] = val
         datas.append(data)
-    data = datas[-1]
-    data['tanggal'] = str(data['tanggal'])
+    if len(datas) == 0:
+        data = []
+    else:
+        data = datas[-1]
+        data['tanggal'] = str(data['tanggal'])
     dataJson = json.dumps(data)
     return dataJson
