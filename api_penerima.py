@@ -5,7 +5,7 @@ from sqlib import input_suhu_kelembapan, input_cahaya, input_hujan, get_cahaya, 
 app = Flask(__name__)
 
 
-@app.route('/input/node1', methods=['POST'])
+@app.route('/ida/input/node1', methods=['POST'])
 def input_node1():
     json_data = request.json
     if json_data == None:
@@ -26,7 +26,7 @@ def input_node1():
             return resp, 200
 
 
-@app.route('/input/node2', methods=['POST'])
+@app.route('/ida/input/node2', methods=['POST'])
 def input_node2():
     json_data = request.json
     if json_data == None:
@@ -46,7 +46,7 @@ def input_node2():
             return resp, 200
 
 
-@app.route('/input/node3', methods=['POST'])
+@app.route('/ida/input/node3', methods=['POST'])
 def input_node3():
     json_data = request.json
     if json_data == None:
@@ -66,19 +66,26 @@ def input_node3():
             return resp, 200
 
 
-@app.route('/get/node1', methods=['GET'])
+@app.route('/ida/welcome', methods=['GET'])
+def welcome():
+    result = {"message": "welcome"}
+    resp = jsonify(result)
+    return resp, 200
+
+
+@app.route('/ida/get/node1', methods=['GET'])
 def get_node1():
     result = get_suhu_kelembapan()
     return result, 200
 
 
-@app.route('/get/node2', methods=['GET'])
+@app.route('/ida/get/node2', methods=['GET'])
 def get_node2():
     result = get_hujan()
     return result, 200
 
 
-@app.route('/get/node3', methods=['GET'])
+@app.route('/ida/get/node3', methods=['GET'])
 def get_node3():
     result = get_cahaya()
     return result, 200
