@@ -5,65 +5,28 @@ from sqlib import input_suhu_kelembapan, input_cahaya, input_hujan, get_cahaya, 
 app = Flask(__name__)
 
 
-@app.route('/ida/input/node1', methods=['POST'])
-def input_node1():
-    json_data = request.json
-    if json_data == None:
-        result = {"message": "process failed"}
-        resp = jsonify(result)
-        return resp, 400
-    else:
-        if 'suhu' not in json_data or 'kelembapan' not in json_data:
-            result = {"message": "error request"}
-            resp = jsonify(result)
-            return resp, 401
-        else:
-            suhu = json_data['suhu']
-            kelembapan = json_data['kelembapan']
-            input_suhu_kelembapan(suhu, kelembapan)
-            result = {"message": "Input success"}
-            resp = jsonify(result)
-            return resp, 200
+@app.route('/ida/input/node1/<suhu>/<kelembapan>', methods=['POST'])
+def input_node1(suhu, kelembapan):
+    input_suhu_kelembapan(suhu, kelembapan)
+    result = {"message": "Input success"}
+    resp = jsonify(result)
+    return resp, 200
 
 
-@app.route('/ida/input/node2', methods=['POST'])
-def input_node2():
-    json_data = request.json
-    if json_data == None:
-        result = {"message": "process failed"}
-        resp = jsonify(result)
-        return resp, 400
-    else:
-        if 'hujan' not in json_data:
-            result = {"message": "error request"}
-            resp = jsonify(result)
-            return resp, 401
-        else:
-            hujan = json_data['hujan']
-            input_hujan(hujan)
-            result = {"message": "Input success"}
-            resp = jsonify(result)
-            return resp, 200
+@app.route('/ida/input/node2/<hujan>', methods=['POST'])
+def input_node2(hujan):
+    input_hujan(hujan)
+    result = {"message": "Input success"}
+    resp = jsonify(result)
+    return resp, 200
 
 
-@app.route('/ida/input/node3', methods=['POST'])
-def input_node3():
-    json_data = request.json
-    if json_data == None:
-        result = {"message": "process failed"}
-        resp = jsonify(result)
-        return resp, 400
-    else:
-        if 'cahaya' not in json_data:
-            result = {"message": "error request"}
-            resp = jsonify(result)
-            return resp, 401
-        else:
-            cahaya = json_data['cahaya']
-            input_cahaya(cahaya)
-            result = {"message": "Input success"}
-            resp = jsonify(result)
-            return resp, 200
+@app.route('/ida/input/node3/<cahaya>', methods=['POST'])
+def input_node3(cahaya):
+    input_cahaya(cahaya)
+    result = {"message": "Input success"}
+    resp = jsonify(result)
+    return resp, 200
 
 
 @app.route('/ida/welcome', methods=['GET'])

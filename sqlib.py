@@ -99,3 +99,6 @@ def get_hujan():
         data['tanggal'] = str(data['tanggal'])
     dataJson = json.dumps(data)
     return dataJson
+
+
+print(get_hujan())
